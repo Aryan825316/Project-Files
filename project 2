@@ -1,0 +1,52 @@
+TASK THREE: INVENTORY MANAGEMENT SYSTEM
+
+Q.No.2:-Build a Python program to manage inventory for a store or warehouse. The system should
+allow users to add, edit, and delete products, track inventory levels, and generate reports
+such as low- stock alerts or sales summaries. Implement features like user authentication,
+data validation, and graphical user interface (GUI) for better usability.
+
+Ans:-
+
+import pandas as pd
+
+class Inventory:
+    def __init__(self):
+        self.products = []
+        self.quantities = []
+
+    def add_product(self, product, quantity):
+        self.products.append(product)
+        self.quantities.append(quantity)
+
+    def update_quantity(self, product, quantity):
+        index = self.products.index(product)
+        self.quantities[index] = quantity
+
+    def generate_report(self):
+        data = {'Product': self.products, 'Quantity': self.quantities}
+        df = pd.DataFrame(data)
+        df.to_csv('inventory_report.csv', index=False)
+        print("Inventory report generated successfully!")
+
+# Create an instance of the Inventory class
+inventory = Inventory()
+
+# Add example products and quantities
+inventory.add_product('Widget A', 100)
+inventory.add_product('Widget B', 50)
+inventory.add_product('Widget C', 200)
+
+# Update quantity of a product
+inventory.update_quantity('Widget A', 50)
+
+# Generate the inventory report
+inventory.generate_report()
+
+
+
+Output:-
+
+Product,Quantity
+Widget A,50
+Widget B,50
+Widget C,200
